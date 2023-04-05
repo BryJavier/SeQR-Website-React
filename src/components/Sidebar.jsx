@@ -7,7 +7,7 @@ function Sidebar() {
   const location = useLocation();
 
   //for opening and closing the sidebar
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const Menus = [
     { title: "Home", src: "home"},
