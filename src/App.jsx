@@ -1,30 +1,31 @@
-import { useState } from 'react'
-import Sidebar from './components/Sidebar';
-import './assets/css/App.css'
+import './assets/css/App.css';
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import Home from './components/Home'
+import Layout from './components/Layout';
+import AddStudent from './components/AddStudent';
+import EditStudent from './components/EditStudent';
+import ScanQr from './components/ScanQr';
+import ManageAccount from './components/ManageAccount';
+import Logs from './components/Logs';
+import Data from './components/DataAnalysis';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path='/' element={<Layout />}>
+        <Route path='/home' element={<Home />}/>
+        <Route path='/add-student' element={<AddStudent />} />
+        <Route path='/edit-student' element={<EditStudent/> } />
+        <Route path='/scan-qr' element={<ScanQr/>} />
+        <Route path='/manage-account' element={<ManageAccount/>} />
+        <Route path='/logs' element={<Logs/>} />
+        <Route path='/data-analysis' element={<Data />} />
+      </Route>
+    )
+  )
 
   return (
-    <div className="flex h-screen">
-      <Sidebar />
-
-      {/* Main Content Page */}
-      <div className="w-full md:w-1/2 p-4 flex items-center justify-center">
-        <div className="flex flex-wrap">
-          <div className="w-full p-4">
-            <div className="bg-gray-100 h-64 flex items-center justify-center">
-              Column 1
-            </div>
-          </div>
-          <div className="w-full p-4">
-            <div className="bg-gray-200 h-64 flex items-center justify-center">
-              Column 2
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
